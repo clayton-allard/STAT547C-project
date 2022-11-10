@@ -5,3 +5,5 @@
 - Need to be familiar with what a latent variable is. Comes from expectation maximization.
 - -**GAN** Generative Adverserial Network
 - -**VAE** Variational Auto-Encoder.
+
+I had a ton of notes here that didn't save :(
