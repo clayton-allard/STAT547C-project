@@ -55,3 +55,24 @@ Recall that is we have a random variable $Z \in \mathbb{R}^d$ and let $Y=g(Z)$ w
 - **NOTE the proof here. Page 7. Requires measure thoery.** Use triangular matrices and the dominated convergence theorem.
 
 - A scalar coupling functions must be strictly monotone.
+
+## Ivan Kobyzev, Simon J.D. Prince, and Marcus A. Brubaker. (2020 June 6). *Normalizing Flows: An Introduction and Review of Current Methods*. 
+# November 13, 2022
+
+- Residual flows have the form $$g(x)=x+F(x)$$ where $F(x)$ is a feedforward network. The main motivation is to save memory during trainingand stabilize computation.
+- Similar to the coupling flow, we break up the space into partitions and have $$y^A=x^A+F(x^B)$$ $$y^B=x^B+G(x^A)$$ where $F:\mathbb{R}^{D-d}\rightarrow\mathbb{R}^d$ and $G:\mathbb{R}^d\rightarrow\mathbb{R}^{D-d}$ are residual blocks. This is invertible, but computation of the Jacobian is inefficient.
+- Proposition 7 says that a residual connection is invertible if the Lipschitz constant of the residual block has lipschitz constant less than 1.
+
+- The last method to look at is the Infinitesimal (Continuous) Flows. For this, we essentially have so many composed functions that it can be viewed in the continuous scope. We have $$\frac{d}{dt}x(t)=F(x(t),\theta(t))$$ where $F:\mathbb{R}^D \times \Theta \rightarrow\mathbb{R}^D.$
+- We can look at this from the scope of ordinary differential equations, and from stochastic differential equations. 
+
+- **ODE methods**
+- Take $t \in [0,1]$ with $x(0)=z$ and $x(1)=g(z)=y$. We'll denote $\Phi^t(z)$ for each $t$. 
+- At each time $t, \Phi^t(\cdot):\mathbb{R}^D \rightarrow\mathbb{R}^D$ is a diffeomorphism and satisfies the group law $\Phi^t \circ \Phi^s=\Phi^(t+s).$
+- An ODE in this context defines a one-parameter group of diffeomorphisms on $\mathbb{R}^D$. Such a group is called a smooth flow.
+- When $t=1$, the diffeomorphism $\Phi^1(\cdot)$ is a _time one map_. This goes under the name **Neural ODE (NODE)**. In other words, this is an infinitely deep neural network with $z$ as an input and $y$ as an output and with continuous weights $\theta(t)$. 
+- _Adjoint sensitivity method_ is the continuous analog of backpropagation.
+  * For loss $L(x(t))$ with $x(t)$ as the solution to the ODE above, we have that the sensitivity is $a(t)=\frac{dL}{dx(t)}$. We define $$a(t)=\frac{dL}{dx(t)}.$$ The back propagation formula then becomes $$\frac{da(t)}{dt}=-a(t)\frac{dF(x(t),\theta(t)))}{dx(t)}.$$
+- For density estimation, we do not have a loss function, but we have a likelihood function to maximize. $$\frac{d}{dt}\log(p(x(t)))=-Tr(\frac{dF(x(t))}{dx(t)}).$$
+- One problem with using the ODE method is that it must be orientation preserving. This means that the Jacobian **must** be positive.
+- The **Augmented Neural ODE** bypasses this by adding in extra variables $\hat{x}(t)\in\mathbb{R}^p$. Then we solve the new ODE $$\frac{d}{dt}(x(t), \hat{x}(t),\theta(t))$$ with initial conditions $x(0)=z$ and $\hat{x}(0)=0$. This gives us the flexibility to let $\hat{x}(t)$ to be some mapping that allows the Jacobian to remain positive.
