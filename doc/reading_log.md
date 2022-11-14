@@ -76,3 +76,6 @@ Recall that is we have a random variable $Z \in \mathbb{R}^d$ and let $Y=g(Z)$ w
 - For density estimation, we do not have a loss function, but we have a likelihood function to maximize. $$\frac{d}{dt}\log(p(x(t)))=-Tr(\frac{dF(x(t))}{dx(t)}).$$
 - One problem with using the ODE method is that it must be orientation preserving. This means that the Jacobian **must** be positive.
 - The **Augmented Neural ODE** bypasses this by adding in extra variables $\hat{x}(t)\in\mathbb{R}^p$. Then we solve the new ODE $$\frac{d}{dt}(x(t), \hat{x}(t),\theta(t))$$ with initial conditions $x(0)=z$ and $\hat{x}(0)=0$. This gives us the flexibility to let $\hat{x}(t)$ to be some mapping that allows the Jacobian to remain positive.
+
+**Stochastic Differential Equations (SDE) based methods**
+- We use the Ito process which describes the change of a random variable $x \in \mathbb{R}^D$ as a function of time $t$. This is $$dx(t)=b(x(t),t)+\sigma(x(t),t)dB\_t$$ where $b(x,t)\in \mathbb{R}^D$ is the drift coefficient, $\sigma(x,t)\in \mathbb{R}^{D\times D} is the diffusion coefficient.
