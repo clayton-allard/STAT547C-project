@@ -83,3 +83,6 @@ Recall that is we have a random variable $Z \in \mathbb{R}^d$ and let $Y=g(Z)$ w
   * Applying the backward transition, we obtain a new density $p(x^0)$ which we hope to match with $q(x^0)$. 
 
 - Flow++ is the best performing approach for image datasets.
+
+- It doesn't matter what the base distribution is as long as the inverse CDF can draw from the uniform distribution. 
+- The majority of flows being explored are triangular flows. 
