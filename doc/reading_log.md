@@ -79,3 +79,7 @@ Recall that is we have a random variable $Z \in \mathbb{R}^d$ and let $Y=g(Z)$ w
 
 **Stochastic Differential Equations (SDE) based methods**
 - We use the Ito process which describes the change of a random variable $x \in \mathbb{R}^D$ as a function of time $t$. This is $$dx(t)=b(x(t),t)+\sigma(x(t),t)dB\_t$$ where $b(x,t)\in \mathbb{R}^D$ is the drift coefficient, $\sigma(x,t)\in \mathbb{R}^{D\times D} is the diffusion coefficient.
+- We can use MCMC methods with $x^t$ being the random variable at time $t$ with $x^0=y$ as the data point and $x^T=z$ as the base point. Then we consider the transition $q(x^t \~| x^{t-1})$ for the forward transition probability and $p(x^{t-1} \~| x^{t})$ for the backward transition. These are thought to either be binomial or normal. 
+  * Applying the backward transition, we obtain a new density $p(x^0)$ which we hope to match with $q(x^0)$. 
+
+- Flow++ is the best performing approach for image datasets.
