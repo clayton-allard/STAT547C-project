@@ -1,7 +1,7 @@
 ## Ivan Kobyzev, Simon J.D. Prince, and Marcus A. Brubaker. (2020 June 6). *Normalizing Flows: An Introduction and Review of Current Methods*. 
 # November 9, 2022
 
-- A *generative model* is made from data points coming from an unknown probability distribution. *Normalizing flows* is a form of generative modelling.
+- A *generative model* is made from data points coming from an unknown probability distribution. *Normalizing flows* is a form of probabilistic generative modelling.
 - Need to be familiar with what a latent variable is. Comes from expectation maximization.
   * **GAN** Generative Adverserial Network
   * **VAE** Variational Auto-Encoder.
@@ -86,3 +86,7 @@ Recall that is we have a random variable $Z \in \mathbb{R}^d$ and let $Y=g(Z)$ w
 
 - It doesn't matter what the base distribution is as long as the inverse CDF can draw from the uniform distribution. 
 - The majority of flows being explored are triangular flows. 
+
+## Introduction to Normalizing Flows (ECCV2020 Tutorial), Marcus Brubaker
+# November 30, 2022
+- GANs can be used to train images to create new images.
