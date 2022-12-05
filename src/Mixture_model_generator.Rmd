@@ -1,0 +1,29 @@
+---
+title: "Normalizing Flows"
+output: html_document
+date: "2022-12-01"
+---
+
+```{r}
+mix_amount <- sample(25,1)+1
+# func <- generate_function(mix_amount){
+  mixtures <- runif(mix_amount,0,1)
+  mixtures <- mixtures/sum(mixtures)
+  dists <- cbind(rnorm(mix_amount),sqrt(rchisq(mix_amount, 1)))
+# }
+  
+  mixture_function <- function(x,params,mix){
+    val <- 0
+    for (i in 1:length(mix)) {
+      val <- val + mix[i]*dnorm(x,mean=params[i,1],sd=params[i,2])
+    }
+    return(val)
+  }
+  
+  data.frame(dists,mixtures)
+```
+
+```{r}
+curve(mixture_function(x,dists,mixtures),from = -5, to = 5, ylab="density", main="Unknown Distribution")
+```
+
